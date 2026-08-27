@@ -5,6 +5,24 @@
 
 <img align="left" width="80" height="80" src="icons/icon.png" alt="App icon">
 
+# Remote Home Assistant - Low Traffic Fork
+
+Fork von `custom-components/remote_homeassistant` mit einer Anpassung zur Reduzierung des Datenverbrauchs bei Remote-Verbindungen über LTE/WAN.
+
+## Änderung gegenüber dem Original
+
+Statt alle `state_changed`-Events zu abonnieren und erst lokal zu filtern, verwendet dieser Fork `subscribe_entities` mit den explizit freigegebenen Entitäten.
+
+Dadurch werden nicht benötigte Zustandsänderungen bereits auf der entfernten Home-Assistant-Instanz verworfen und gar nicht erst über die Verbindung übertragen.
+
+Getesteter Effekt in meinem Setup:
+
+- vorher ca. 25 MB/h
+- nach Anpassung ca. 3,9 MB/h
+
+Die restliche Funktionalität von Remote Home Assistant bleibt unverändert.
+
+
 # Remote Home-Assistant
 
 _Component to link multiple Home-Assistant instances together._
