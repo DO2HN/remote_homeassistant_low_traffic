@@ -883,4 +883,9 @@ class RemoteConnection:
 			"subscribe_entities",
 			entity_ids=list(self._whitelist_e),
 		)
+
+		# Fetch all entity names once so newly added remote entities
+		# are available in the options UI.
+		await self.call(got_states, "get_states")
+		
 		await self.proxy_services.load()
